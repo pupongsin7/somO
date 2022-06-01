@@ -113,7 +113,7 @@ function serializeBeforeSend() {
     console.log(data)
     let aw = document.getElementById("form")
     console.log(aw.action)
-    document.getElementById("form").action = "APIresult.html?" + data
+    document.getElementById("form").action = "result.html?" + data
     console.log(document.getElementById("form").action)
     return true
     //window.location.href = "/result.html/?"+ data;
@@ -193,53 +193,54 @@ function nextPrev(n) {
 
         // console.log(data)
         // $.post("http://192.168.1.8:3333/predict", data,
-        $.post(pathAPI + "predict", data,
-            function (data, status) {
-                let str = ""
-                console.log(data)
-                // alert("Data: " + data.data.GPA + "\nStatus: " + status);
-                if (data.data.GPA == "(2.5-inf)") {
-                    // document.getElementById("icons").innerHTML = `<i class="fas fa-smile-beam fa-10x text-success"></i>`
-                    // str = `ผลการเรียนออกไปในแนวทางที่ดี`
-                    str = "1"
-                }
-                else if (data.data.GPA == "(-inf-2.5]") {
-                    // document.getElementById("icons").innerHTML = `<i class="fas fa-sad-cry fa-10x text-danger"></i>`
-                    // str = `มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน`
-                    str = "2"
-                }
-                //set result and prob
-                let resultBad = data.data.historyData[0].count
-                let resultGood = data.data.historyData[1].count
-                let HistoryCount = resultBad + resultGood
+        window.location.href = "result.html";
+        // $.post(pathAPI + "predict", data,
+        //     function (data, status) {
+        //         let str = ""
+        //         console.log(data)
+        //         // alert("Data: " + data.data.GPA + "\nStatus: " + status);
+        //         if (data.data.GPA == "(2.5-inf)") {
+        //             // document.getElementById("icons").innerHTML = `<i class="fas fa-smile-beam fa-10x text-success"></i>`
+        //             // str = `ผลการเรียนออกไปในแนวทางที่ดี`
+        //             str = "1"
+        //         }
+        //         else if (data.data.GPA == "(-inf-2.5]") {
+        //             // document.getElementById("icons").innerHTML = `<i class="fas fa-sad-cry fa-10x text-danger"></i>`
+        //             // str = `มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน`
+        //             str = "2"
+        //         }
+        //         //set result and prob
+        //         let resultBad = data.data.historyData[0].count
+        //         let resultGood = data.data.historyData[1].count
+        //         let HistoryCount = resultBad + resultGood
            
-                // window.location.href = "result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount;
-                sessionStorage.setItem("Link","result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount)
-                sessionStorage.setItem("res", str);
-                sessionStorage.setItem("prob", data.data.prob);
-                sessionStorage.setItem("resBad", resultBad);
-                sessionStorage.setItem("resGood", resultGood);
-                sessionStorage.setItem("History", HistoryCount);
-                window.location.href = "result.html";
+        //         // window.location.href = "result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount;
+        //         sessionStorage.setItem("Link","result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount)
+        //         sessionStorage.setItem("res", str);
+        //         sessionStorage.setItem("prob", data.data.prob);
+        //         sessionStorage.setItem("resBad", resultBad);
+        //         sessionStorage.setItem("resGood", resultGood);
+        //         sessionStorage.setItem("History", HistoryCount);
+        //         window.location.href = "result.html";
 
-                // document.getElementById("result").innerHTML = str
-                // document.getElementById("prob").innerHTML = `ความน่าจะเป็นเท่ากับ ` + data.data.prob
+        //         // document.getElementById("result").innerHTML = str
+        //         // document.getElementById("prob").innerHTML = `ความน่าจะเป็นเท่ากับ ` + data.data.prob
 
-                //set to create pie chart
+        //         //set to create pie chart
 
-                // console.log(resultBad)
-                // console.log(resultGood)
-                // PieChart(resultGood, resultBad)
+        //         // console.log(resultBad)
+        //         // console.log(resultGood)
+        //         // PieChart(resultGood, resultBad)
 
-            }).done(function () {
-                // alert("second success");
-                // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
-            }).fail(function () {
-                // alert("error");
+        //     }).done(function () {
+        //         // alert("second success");
+        //         // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+        //     }).fail(function () {
+        //         // alert("error");
 
-                // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+        //         // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
 
-            })
+        //     })
         return false;
     }
     // Otherwise, display the correct tab:
